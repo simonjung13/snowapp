@@ -21,5 +21,6 @@ jobs:
     - name: Deploy via SCP
       run: |
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > /tmp/my_secret.key
-        sudo scp -o StrictHostKeyChecking=no -i /tmp/my_secret.key main.py simonjung13@${{ secrets.GCE_IP }}:/home/simonjung13/
+        chmod 600 /tmp/my_secret.key
+        scp -o StrictHostKeyChecking=no -i /tmp/my_secret.key main.py simonjung13@${{ secrets.GCE_IP }}:/home/simonjung13/
         rm /tmp/my_secret.key
